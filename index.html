@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEYRO | Official Store</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === COLOR THEME & RESET === */
+        :root {
+            --bg-black: #050505;
+            --text-white: #ffffff;
+            --metallic-silver: #b3b3b3;
+            --promo-bg: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-black); color: var(--text-white); overflow-x: hidden; }
+
+        /* === PROMO BARS === */
+        .promo-bar-top { background-color: var(--promo-bg); color: var(--metallic-silver); text-align: center; padding: 10px 0; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .promo-bar-sub { background-color: #000; text-align: center; padding: 8px 0; font-size: 11px; letter-spacing: 2px; border-bottom: 1px solid #222; border-top: 1px solid #222; text-transform: uppercase; color: var(--text-white); }
+
+        /* === HEADER === */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: var(--bg-black); position: relative; z-index: 100; }
+        
+        .logo-container img { height: 40px; object-fit: contain; }
+        
+        /* Desktop Navigation */
+        .desktop-nav { display: flex; gap: 30px; }
+        .desktop-nav a { color: var(--text-white); text-decoration: none; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s; }
+        .desktop-nav a:hover { color: var(--metallic-silver); }
+
+        /* Icons Right */
+        .header-icons { display: flex; gap: 20px; align-items: center; }
+        .header-icons svg { width: 22px; height: 22px; fill: none; stroke: var(--text-white); stroke-width: 1.5; cursor: pointer; transition: 0.3s; }
+        .header-icons svg:hover { stroke: var(--metallic-silver); }
+
+        /* Hamburger Menu (Mobile) */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 102; }
+        .hamburger span { width: 25px; height: 2px; background-color: var(--text-white); transition: 0.3s; }
+
+        /* Mobile Side Menu */
+        .mobile-menu { position: fixed; top: 0; left: -100%; width: 280px; height: 100vh; background-color: #111; z-index: 101; display: flex; flex-direction: column; padding: 80px 30px; transition: left 0.4s ease; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+        .mobile-menu.active { left: 0; }
+        .mobile-menu a { color: var(--text-white); text-decoration: none; font-size: 18px; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+
+        /* === HERO SLIDER === */
+        .hero-slider { position: relative; width: 100%; height: 80vh; overflow: hidden; background-color: #111; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
+        .slide.active { opacity: 1; }
+
+        /* Slider Controls (Dots) */
+        .slider-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+        .dot { width: 10px; height: 10px; background-color: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .dot.active { background-color: var(--text-white); }
+
+        /* === MOBILE RESPONSIVENESS === */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .desktop-nav { display: none; /* Hide center links on mobile */ }
+            .hamburger { display: flex; }
+            .header-icons { gap: 15px; }
+            
+            /* Banner becomes 16:9 ratio on mobile */
+            .hero-slider { height: auto; aspect-ratio: 16 / 9; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Promo Bar -->
+    <div class="promo-bar-top">Free Shipping Worldwide Over $150</div>
+    
+    <!-- Main Header -->
+    <header>
+        <!-- Mobile Hamburger -->
+        <div class="hamburger" id="hamburgerBtn">
+            <span></span><span></span><span></span>
+        </div>
+
+        <!-- Logo -->
+        <a href="#" class="logo-container">
+            <!-- VEYRO Logo Image (Leave src empty for now, just placeholder) -->
+            <img src="media/logo.jpg" alt="VEYRO LOGO">
+        </a>
+
+        <!-- Desktop Links (Center) -->
+        <nav class="desktop-nav">
+            <a href="#">New Arrivals</a>
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Accessories</a>
+            <a href="#">Lookbook</a>
+        </nav>
+
+        <!-- Icons (Right) -->
+        <div class="header-icons">
+            <!-- Search -->
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <!-- User Profile -->
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <!-- Cart -->
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </div>
+    </header>
+
+    <!-- Sub Promo Bar -->
+    
+    <!-- Mobile Side Drawer Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">New Arrivals</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">Accessories</a>
+        <a href="#">Lookbook</a>
+        <a href="#">Support</a>
+    </div>
+
+    <!-- Hero Slider (No Text, Auto-moving) -->
+    <section class="hero-slider">
+        <!-- Slide 1 (High Quality Placeholder) -->
+        <div class="slide active" style="background-image: url('media/banner_3.jpg');"></div>
+        <!-- Slide 2 -->
+        <div class="slide" style="background-image: url('media/banner_2.jpg');"></div>
+        <!-- Slide 3 -->
+        <div class="slide" style="background-image: url('media/banner_1.jpg');"></div>
+        
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- JavaScript for Menu & Slider -->
+    <script>
+        // --- Mobile Menu Toggle ---
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close menu if clicked outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // --- Auto Slider Logic ---
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            // Remove active class from current
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            // Move to next slide
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Add active class to new
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 4 seconds
+        setInterval(nextSlide, 4000);
+    </script>
+    <!-- =========================================
+         PART 2: CATEGORIES & FEATURED PRODUCTS (SQUARE CARDS)
+         ========================================= -->
+    
+    <style>
+        /* === PART 2 CSS === */
+        .part2-wrapper {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 60px 24px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .section-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #050505;
+            margin: 12px auto 0 auto;
+        }
+
+       /* 4 CIRCLE CATEGORIES */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            justify-items: center;
+        }
+
+        .category-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #050505;
+            width: 100%;
+        }
+
+        .category-circle {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1.5px solid #050505; /* Black border add kiya gaya hai */
+            padding: 4px; /* Image aur border ke beech space (Instagram ring style) */
+            transition: all 0.4s ease;
+            background-color: #ffffff;
+        }
+
+        .category-card:hover .category-circle {
+            border: 2.5px solid #050505; /* Hover par border thick hoga */
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%; /* Image ko proper circle shape mein rakhne ke liye */
+            transition: transform 0.6s ease;
+        }
+
+        .category-card:hover .category-circle img {
+            transform: scale(1.1);
+        }
+
+        .category-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        /* 8 FEATURED PRODUCTS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px 20px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            /* YAHAN CHANGE KIYA HAI: Aspect ratio ab 1/1 (Square) hai */
+            aspect-ratio: 1 / 1; 
+            overflow: hidden;
+            background-color: #f7f7f7;
+            margin-bottom: 16px;
+            
+            border-radius: 12px; 
+            border: 1.5px solid #050505;
+            cursor: pointer;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .product-image-secondary {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .product-image-wrapper:hover .product-image-primary { opacity: 0; transform: scale(1.02); }
+        .product-image-wrapper:hover .product-image-secondary { opacity: 1; transform: scale(1.02); }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 12px;
+            text-transform: uppercase;
+            border-radius: 20px; 
+            z-index: 10;
+        }
+
+        .product-vendor {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #050505;
+            text-decoration: none;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price-wrapper {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .compare-price {
+            text-decoration: line-through;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px 0;
+            background-color: transparent;
+            border: 1.5px solid #050505;
+            color: #050505;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto; 
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #050505;
+            color: #ffffff;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .part2-wrapper { padding: 40px 12px; }
+            .section-title { font-size: 22px; }
+            
+            .categories-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px; 
+                overflow: hidden;
+            }
+            .category-circle { 
+                width: 70px; 
+                height: 70px; 
+            }
+            .category-name { 
+                font-size: 10px; 
+                margin-top: 8px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 10px;
+            }
+            .product-image-wrapper {
+                border-radius: 8px; 
+            }
+            .add-to-cart-btn {
+                font-size: 10px;
+                padding: 10px 0;
+            }
+        }
+    </style>
+
+    <div class="part2-wrapper">
+        
+        <!-- CATEGORIES CIRCLE SECTION -->
+        <div class="section-container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <div class="category-circle">
+                        <img src="media/category_1.jpg" alt="Casual Shirts">
+                    </div>
+                    <span class="category-name">Casual Shirts</span>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-circle">
+                        <img src="media/category_2.jpg" alt="Oversized T-Shirts">
+                    </div>
+                    <span class="category-name">Oversized Tees</span>
+                </a>
+                
+                <!-- HOODIES REPLACED WITH GRAPHIC TEES -->
+                <a href="#" class="category-card">
+                    <div class="category-circle">
+                        <img src="media/category_3.jpg" alt="Graphic Tees">
+                    </div>
+                    <span class="category-name">Graphic Tees</span>
+                </a>
+
+                <!-- ACCESSORIES REPLACED WITH POLO SHIRTS -->
+                <a href="#" class="category-card">
+                    <div class="category-circle">
+                        <img src="media/category_4.jpg" alt="Polo Shirts">
+                    </div>
+                    <span class="category-name">Polo Shirts</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 8 FEATURED PRODUCTS SECTION -->
+        <div class="section-container">
+            <h2 class="section-title">Featured Drops</h2>
+            <div class="products-grid">
+                
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <span class="badge">Trending</span>
+                        <img src="media/product_1.jpg" alt="Product image">
+                       
+                    </div>
+                    <div class="product-vendor">VEYRO ESSENTIALS</div>
+                    <a href="#" class="product-title">Signature Oversized T-Shirt - Black</a>
+                    <div class="product-price-wrapper"><span>$45.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <span class="badge">Sale</span>
+                        <img src="media/product_2.jpg" alt="Product image">
+                    </div>
+                    <div class="product-vendor">VEYRO ORIGINALS</div>
+                    <a href="#" class="product-title">Textured Casual Shirt - Charcoal</a>
+                    <div class="product-price-wrapper"><span>$55.00</span><span class="compare-price">$70.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <!-- Product 3 (REPLACED WITH OXFORD SHIRT) -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="media/product_3.jpg" alt="Product image">
+                    </div>
+                    <div class="product-vendor">VEYRO CLASSICS</div>
+                    <a href="#" class="product-title">Classic Oxford Button-Down - White</a>
+                    <div class="product-price-wrapper"><span>$60.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="media/product_4.jpg" alt="Product image">
+                    </div>
+                    <div class="product-vendor">VEYRO HYPE</div>
+                    <a href="#" class="product-title">Drop-Shoulder Graphic T-Shirt</a>
+                    <div class="product-price-wrapper"><span>$48.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="media/product_5.jpg" alt="Product image">
+                    </div>
+                    <div class="product-vendor">VEYRO ORIGINALS</div>
+                    <a href="#" class="product-title">Linen Textured Casual Shirt - Sand</a>
+                    <div class="product-price-wrapper"><span>$58.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <span class="badge">Restock</span>
+                        <img src="media/product_6.jpg" alt="Product image">
+                    </div>
+                    <div class="product-vendor">VEYRO ESSENTIALS</div>
+                    <a href="#" class="product-title">Everyday Basic Oversized Tee</a>
+                    <div class="product-price-wrapper"><span>$32.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <!-- Product 7 (REPLACED WITH POLO SHIRT) -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="media/product_7.jpg" alt="Product image">
+                    </div>
+                    <div class="product-vendor">VEYRO ATHLETICS</div>
+                    <a href="#" class="product-title">Premium Knitted Polo - Navy Blue</a>
+                    <div class="product-price-wrapper"><span>$42.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="media/product_8.jpg" alt="Product image">
+                    </div>
+                    <div class="product-vendor">VEYRO ORIGINALS</div>
+                    <a href="#" class="product-title">Grandad Collar Linen Shirt</a>
+                    <div class="product-price-wrapper"><span>$52.00</span></div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<!-- =========================================
+         PART 3: BRAND IDENTITY / ABOUT SECTION
+         ========================================= -->
+    
+    <style>
+        /* === PART 3 CSS === */
+        .part3-wrapper {
+            background-color: #050505; /* Dark theme for contrast */
+            color: #ffffff;
+            padding: 80px 24px;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .brand-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .brand-image-col {
+            flex: 1;
+            position: relative;
+        }
+
+        .brand-image-wrapper {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            border-radius: 12px; /* Matching the curved corners of part 2 */
+        }
+
+        .brand-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .brand-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Decorative silver accent element */
+        .accent-box {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #b3b3b3; /* Metallic silver */
+            z-index: 0;
+            border-radius: 12px;
+        }
+
+        .brand-image-wrapper {
+            z-index: 2;
+        }
+
+        .brand-text-col {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .brand-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #b3b3b3;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .brand-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .brand-title span {
+            color: #b3b3b3; /* Silver highlight */
+        }
+
+        .brand-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #cccccc;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            color: #050505;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            border-radius: 8px; /* Matching the buttons from part 2 */
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background-color: #b3b3b3;
+            color: #050505;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 991px) {
+            .brand-container {
+                flex-direction: column;
+                gap: 50px;
+            }
+            .brand-text-col {
+                padding-right: 0;
+                text-align: center;
+                order: -1; /* Text upar, image neeche mobile par */
+            }
+            .brand-title {
+                font-size: 32px;
+            }
+            .accent-box {
+                display: none; /* Hide accent box on small screens for cleaner look */
+            }
+        }
+    </style>
+
+    <div class="part3-wrapper">
+        <div class="brand-container">
+            
+            <!-- Text Content -->
+            <div class="brand-text-col">
+                <span class="brand-subtitle">The Veyro Identity</span>
+                <h2 class="brand-title">Defining <br>Modern <span>Essentials.</span></h2>
+                <p class="brand-description">
+                    We don't just make clothes; we engineer confidence. VEYRO blends minimalist streetwear aesthetics with premium heavyweight fabrics. Every stitch, every cut, and every drop is meticulously designed for those who appreciate the subtle art of luxury in everyday wear. No compromises. Just pure, sharp style.
+                </p>
+                <a href="#" class="explore-btn">Discover Our Story</a>
+            </div>
+
+            <!-- Image Content -->
+            <div class="brand-image-col">
+                <div class="accent-box"></div>
+                <div class="brand-image-wrapper">
+                    <!-- Premium AI/High-end Placeholder Image -->
+                    <img src="media/about.jpg" alt="VEYRO Brand Lifestyle">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- =========================================
+         PART 4: PREMIUM FEATURES & NEWSLETTER
+         ========================================= -->
+    
+    <style>
+        /* === PART 4 CSS === */
+        .part4-wrapper {
+            background-color: #f4f4f4; /* Light contrast against Part 3 */
+            color: #050505;
+            padding: 80px 24px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- USPs / Features Section --- */
+        .features-container {
+            max-width: 1320px;
+            margin: 0 auto 100px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+            stroke: #050505;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        /* --- Newsletter Section --- */
+        .newsletter-container {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 70px 40px;
+            border-radius: 12px;
+            border: 2px solid #050505;
+            box-shadow: 12px 12px 0px #050505; /* Urban streetwear brutalist shadow */
+        }
+
+        .newsletter-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #666666;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-desc {
+            font-size: 15px;
+            color: #555555;
+            margin-bottom: 35px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 16px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            border: 1.5px solid #cccccc;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            border-color: #050505;
+            box-shadow: 0 0 0 4px rgba(5, 5, 5, 0.1);
+        }
+
+        .newsletter-btn {
+            padding: 16px 36px;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background-color: #b3b3b3;
+            color: #050505;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .part4-wrapper {
+                padding: 60px 16px;
+            }
+            .features-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                margin-bottom: 70px;
+            }
+            .newsletter-container {
+                padding: 50px 20px;
+                box-shadow: 8px 8px 0px #050505;
+            }
+            .newsletter-title {
+                font-size: 26px;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .newsletter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <div class="part4-wrapper">
+        
+        <!-- 3 USPs / Features Section -->
+        <div class="features-container">
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <h3 class="feature-title">Premium Packaging</h3>
+                <p class="feature-desc">Har order ek luxury unboxing experience ke sath deliver kiya jata hai.</p>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <h3 class="feature-title">24/7 Priority Support</h3>
+                <p class="feature-desc">Veyro members ke liye round-the-clock dedicated customer assistance.</p>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                <h3 class="feature-title">Fast & Free Shipping</h3>
+                <p class="feature-desc">Worldwide complimentary shipping on all premium orders over $150.</p>
+            </div>
+        </div>
+
+        <!-- Newsletter Signup Section -->
+        <div class="newsletter-container">
+            <span class="newsletter-subtitle">Join The Veyro Club</span>
+            <h2 class="newsletter-title">Unlock Exclusive Drops</h2>
+            <p class="newsletter-desc">Naye collections, secret sales aur VIP events ki early access pane ke liye sign up karein.</p>
+            
+            <!-- Form prevents page reload for demo -->
+            <form class="newsletter-form" onsubmit="event.preventDefault();">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+
+    </div>
+    <!-- =========================================
+         PART 5: PREMIUM FOOTER & CLOSING TAGS
+         ========================================= -->
+    
+    <style>
+        /* === PART 5 CSS === */
+        .footer-wrapper {
+            background-color: #050505;
+            color: #ffffff;
+            padding: 80px 24px 30px 24px;
+            font-family: 'Inter', sans-serif;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        /* Brand Column */
+        .footer-brand h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand h2 svg {
+            width: 35px;
+            height: 35px;
+            fill: #b3b3b3;
+        }
+
+        .footer-brand p {
+            color: #888888;
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 300px;
+            margin-bottom: 30px;
+        }
+
+        /* Links Columns */
+        .footer-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #888888;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #1a1a1a;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons svg {
+            width: 18px;
+            height: 18px;
+            fill: #ffffff;
+            transition: fill 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #ffffff;
+        }
+
+        .social-icons a:hover svg {
+            fill: #050505;
+        }
+
+        /* Bottom Copyright Bar */
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #666666;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #b3b3b3;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 991px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-wrapper {
+                padding: 60px 20px 20px 20px;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .footer-brand h2 {
+                justify-content: center;
+            }
+            .footer-brand p {
+                margin: 0 auto 30px auto;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <footer class="footer-wrapper">
+        <div class="footer-container">
+            
+            <!-- Column 1: Brand -->
+            <div class="footer-brand">
+                <h2 class="logo-container">
+                    <img src="media/logo.jpg">
+                </h2>
+                <p>Engineering confidence through minimalist streetwear and premium heavyweight essentials. Designed for the modern era.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.04.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.78-1.15 5.54-3.33 7.65-2.22 2.15-5.36 3.19-8.41 2.5-3.05-.66-5.69-2.92-6.8-5.83-1.1-2.93-.57-6.38 1.34-8.89 1.83-2.43 4.88-3.7 7.9-3.53v4.06c-1.65-.05-3.36.42-4.66 1.46-1.35 1.11-2.2 2.87-2.09 4.67.11 1.82 1.19 3.52 2.79 4.38 1.62.88 3.65.91 5.25.13 1.61-.79 2.72-2.39 2.83-4.17.15-3.23.1-6.47.1-9.7l.02-9.75z"/></svg></a>
+                    <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Shop -->
+            <div>
+                <h3 class="footer-heading">Shop</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Casual Shirts</a></li>
+                    <li><a href="#">Oversized Tees</a></li>
+                    <li><a href="#">Graphic Tees</a></li>
+                    <li><a href="#">Polo Shirts</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Help -->
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Legal / Policies -->
+            <div>
+                <h3 class="footer-heading">Information</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Veyro</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 VEYRO Official. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Secure Checkout</a>
+                <a href="#">Global Shipping</a>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
